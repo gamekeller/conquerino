@@ -1,0 +1,22 @@
+# Dependencies
+markdown:            redcarpet
+highlighter:         pygments
+
+# Permalinks
+#
+# Use of `relative_permalinks` ensures post links from the index work properly.
+permalink:           pretty
+relative_permalinks: true
+
+# Setup
+title:               Conquerino
+tagline:             'Eine Art Strategiespiel'
+description:         'Conquerino ist eine Art Strategiespiel, ähnlich wie das Browsergame "Stämme".'
+url:                 http://conquerino.gamekeller.net
+baseurl:             /
+
+# About/contact
+author:
+  name:              Yeti
+  url:               https://twitter.com/Yeti_Cory
+  email:             yeti@gamekeller.net

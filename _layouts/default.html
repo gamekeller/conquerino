@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="de-de">
+
+  {% include head.html %}
+
+  <body>
+
+    {% include sidebar.html %}
+
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">{{ site.title }}</a>
+            <small>{{ site.tagline }}</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        {{ content }}
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script>(function(b){var d=b.querySelector(".sidebar-toggle"),e=b.querySelector("#sidebar"),c=b.querySelector("#sidebar-checkbox");b.addEventListener("click",function(a){a=a.target;c.checked&&!e.contains(a)&&a!==c&&a!==d&&(c.checked=!1)},!1)})(document);</script>
+  </body>
+</html>
