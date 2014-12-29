@@ -25,5 +25,61 @@
     <label for="sidebar-checkbox" class="sidebar-toggle"></label>
 
     <script>(function(b){var d=b.querySelector(".sidebar-toggle"),e=b.querySelector("#sidebar"),c=b.querySelector("#sidebar-checkbox");b.addEventListener("click",function(a){a=a.target;c.checked&&!e.contains(a)&&a!==c&&a!==d&&(c.checked=!1)},!1)})(document);</script>
+    {% if page.display-round-data == true %}
+    <script>
+      (function(document) {
+
+        function $(selector, fn) {
+          [].forEach.call(document.querySelectorAll(selector), fn);
+        }
+
+        function calcNextRoundDate(nowMs) {
+          var rightNow = new Date(nowMs);
+          var prevRound = new Date(nowMs);
+          var i, f;
+
+          for(i = f = 0; i <= 6; i++) {
+            if(i > 3) f++;
+            if(i !== rightNow.getDay()) continue;
+            prevRound.setDate(rightNow.getDate() - (f || i + 1));
+          }
+
+          return new Date(prevRound.valueOf() + (prevRound.getDay() > 3 ? 4 : 3) * 24 * 60 * 60 * 1e3);
+        }
+
+        function calcRoundCount(gameStartDate, nowMs) {
+          var now = new Date(nowMs).setHours(1, 0, 0, 0);
+          var gameStart = new Date(gameStartDate);
+          var diff = (now.valueOf() - gameStart.valueOf()) / (24 * 60 * 60 * 1e3);
+          var roundCount = 0;
+
+          while(diff > 7) {
+            roundCount++;
+            diff -= 7;
+          }
+
+          while(diff) {
+            if(diff === 1 || diff === 5) roundCount++;
+            diff--;
+          }
+
+          return roundCount;
+        }
+
+        var days = ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'];
+        var months = ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'];
+        var dateNow = Date.now();
+        var nextRound = calcNextRoundDate(dateNow);
+
+        $('.js-next-round', function(el) {
+          el.textContent = days[nextRound.getDay()] + ', der ' + nextRound.getDate() + '. ' + months[nextRound.getMonth()] + ' ' + nextRound.getFullYear();
+        });
+
+        $('.js-round-count', function(el) {
+          el.textContent = calcRoundCount('{{ site.current_game.start }}', dateNow);
+        });
+      })(document);
+    </script>
+    {% endif %}
   </body>
 </html>

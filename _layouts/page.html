@@ -3,8 +3,14 @@ layout: default
 ---
 
 <div class="page">
-  {% if page.message %}
-    <p class="message">{{ page.message }}</p>
+  {% if page.display-round-data == true %}
+    <div class="message">
+      <p>Nächste Runde: <span class="js-next-round">Jeden Samstag und Mittwoch</span></p>
+      <p>Bisher gespielte Runden: <span class="js-round-count">n/a</span></p>
+    </div>
+  {% endif %}
+  {% if page.preamble %}
+    <p class="message">{{ page.preamble }}</p>
   {% endif %}
   <h1 class="page-title">{{ page.title }}</h1>
   {{ content }}

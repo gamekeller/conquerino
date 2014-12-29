@@ -20,3 +20,7 @@ author:
   name:              Yeti
   url:               https://twitter.com/Yeti_Cory
   email:             yeti@gamekeller.net
+
+# Conquerino game data
+current_game:
+  start:             2014-12-27

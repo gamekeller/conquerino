@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Was ist Conquerino?
-message: 'Nächste Runde: 27.12.2014'
+display-round-data: true
 ---
 
 Conquerino ist eine Art Strategiespiel, ähnlich wie das Browsergame "Stämme". Allerdings hat es noch mehr Ähnlichkeiten mit Rollenspielen, zudem ist es ein wenig komplexer und analog.
