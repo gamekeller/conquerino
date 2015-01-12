@@ -36,7 +36,7 @@
         function calcNextRoundDate(nowMs) {
           var rightNow = new Date(nowMs);
           var prevRound = new Date(nowMs);
-          var i, f;
+          var i;
 
           for(i = 0; i <= 6; i++) {
             if(i !== rightNow.getDay()) continue;
