@@ -38,13 +38,13 @@
           var prevRound = new Date(nowMs);
           var i, f;
 
-          for(i = f = 0; i <= 6; i++) {
-            if(i > 3) f++;
+          for(i = 0; i <= 6; i++) {
             if(i !== rightNow.getDay()) continue;
-            prevRound.setDate(rightNow.getDate() - (f || i + 1));
+            if(i > rightNow.getDay()) break;
+            prevRound.setDate(rightNow.getDate() - (i === 0 ? 7 : i));
           }
 
-          return new Date(prevRound.valueOf() + (prevRound.getDay() > 3 ? 4 : 3) * 24 * 60 * 60 * 1e3);
+          return new Date(prevRound.valueOf() + 8 * 24 * 60 * 60 * 1e3);
         }
 
         function calcRoundCount(gameStartDate, nowMs) {
@@ -54,12 +54,12 @@
           var roundCount = 0;
 
           while(diff > 7) {
-            roundCount += 2;
+            roundCount++;
             diff -= 7;
           }
 
           while(diff) {
-            if(diff === 1 || diff === 5) roundCount++;
+            if(diff === 1) roundCount++;
             diff--;
           }
 
@@ -72,7 +72,7 @@
         var nextRound = calcNextRoundDate(dateNow);
 
         $('.js-next-round', function(el) {
-          el.textContent = days[nextRound.getDay()] + ', der ' + nextRound.getDate() + '. ' + months[nextRound.getMonth()] + ' ' + nextRound.getFullYear();
+          el.textContent = days[nextRound.getDay()] + ', ' + nextRound.getDate() + '. ' + months[nextRound.getMonth()] + ' ' + nextRound.getFullYear() + ', 00:00 Uhr';
         });
 
         $('.js-round-count', function(el) {
